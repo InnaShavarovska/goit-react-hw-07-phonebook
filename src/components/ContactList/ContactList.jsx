@@ -3,17 +3,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectContacts, selectFilter } from '../../redux/selectors';
 import { deleteContact } from '../../redux/contactsOperation';
 
-const filteredContacts = (contacts, filter) => {
+const getVisibleTasks = (contacts, filter) => {
   const normilizedFilter = filter.toLowerCase();
   return contacts.filter(contact =>
     contact['name'].toLowerCase().includes(normilizedFilter)
   );
 };
 
-const ContactList = () => {
+const Items = () => {
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
-  const visibleTasks = filteredContacts(contacts, filter);
+  const visibleTasks = getVisibleTasks(contacts, filter);
   const dispatch = useDispatch();
   return (
     <List>
@@ -35,4 +35,4 @@ const ContactList = () => {
   );
 };
 
-export default ContactList;
+export default Items;
