@@ -15,6 +15,10 @@ const Items = () => {
   const filter = useSelector(selectFilter);
   const visibleTasks = getVisibleTasks(contacts, filter);
   const dispatch = useDispatch();
+  const handleDelete = evt => {
+    dispatch(deleteContact(evt.currentTarget.id));
+  };
+
   return (
     <List>
       {visibleTasks.length ? (
@@ -22,7 +26,7 @@ const Items = () => {
           <Li key={id}>
             <p>
               {name}: {number}
-              <Delete onClick={() => dispatch(deleteContact(id))}>
+              <Delete type="button" id={id} onClick={handleDelete}>
                 Delete
               </Delete>
             </p>
